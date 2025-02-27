@@ -29,6 +29,114 @@ a {
 	color: var(--text-color);
 }
 
+/* Age Verification Popup */
+.age-verification-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.age-verification-popup.active {
+    opacity: 1;
+    display: flex;
+}
+
+.age-verification-popup .popup-content {
+    background: #fff;
+    padding: 2.5rem;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 450px;
+    width: 90%;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.age-verification-popup.active .popup-content {
+    transform: translateY(0);
+}
+
+.age-verification-popup h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+}
+
+.age-verification-popup p {
+    color: #666;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.age-verification-popup .button-group {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.age-verification-popup button {
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.age-verification-popup .primary-btn {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #fff;
+}
+
+.age-verification-popup .primary-btn:hover {
+    background: linear-gradient(135deg, #1d4ed8, #1e40af);
+    transform: translateY(-2px);
+}
+
+.age-verification-popup .secondary-btn {
+    background: #ef4444;
+    color: #fff;
+}
+
+.age-verification-popup .secondary-btn:hover {
+    background: #dc2626;
+    transform: translateY(-2px);
+}
+
+.age-verification-popup .disclaimer {
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 1.5rem;
+}
+
+@media (max-width: 480px) {
+    .age-verification-popup .popup-content {
+        padding: 2rem;
+    }
+
+    .age-verification-popup .button-group {
+        flex-direction: column;
+    }
+
+    .age-verification-popup button {
+        width: 100%;
+    }
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -50,6 +158,51 @@ a {
     text-transform: uppercase;
     letter-spacing: 1px;
     text-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+}
+
+.footer-icons {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.footer-icons a {
+    display: block;
+    transition: opacity 0.3s ease;
+}
+
+.footer-icons a:hover {
+    opacity: 0.8;
+}
+
+.footer-icons .gamcare-logo {
+    width: 150px;
+    height: auto;
+    object-fit: contain;
+}
+
+.footer-icons .age-logo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .footer-icons {
+        justify-content: center;
+        margin-top: 1rem;
+    }
+
+    .footer-icons .gamcare-logo {
+        width: 120px;
+    }
+
+    .footer-icons .age-logo {
+        width: 40px;
+        height: 40px;
+    }
 }
 
 @media (max-width: 992px) {
@@ -3345,14 +3498,211 @@ footer {
 }
 
 .impact-section {
-    padding: 80px 0;
-    background: var(--bg-gradient-light);
+    padding: 6rem 0;
+    background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+
+.impact-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+.impact-section h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    background: linear-gradient(135deg, #fff 0%, #e3f2fd 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: titleFade 0.5s ease-in-out;
 }
 
 .impact-stats {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-} 
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.stat-card:hover::before {
+    left: 100%;
+}
+
+.stat-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover .stat-icon {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 1rem 0;
+    background: linear-gradient(135deg, #fff 0%, #e3f2fd 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: statNumberIn 0.5s ease-out forwards;
+}
+
+.stat-label {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+.stat-description {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 1rem;
+    line-height: 1.6;
+}
+
+.stat-trend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #4caf50;
+}
+
+.stat-trend.positive {
+    color: #4caf50;
+}
+
+.stat-trend.negative {
+    color: #f44336;
+}
+
+.stat-trend i {
+    margin-right: 0.5rem;
+}
+
+@keyframes patternMove {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 100px 100px;
+    }
+}
+
+@keyframes titleFade {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes statNumberIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 992px) {
+    .impact-section {
+        padding: 4rem 0;
+    }
+
+    .impact-section h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .impact-stats {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+
+    .stat-card {
+        padding: 1.5rem;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+    }
+
+    .stat-icon {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .impact-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card {
+        margin: 0 auto;
+        max-width: 300px;
+    }
+}
+
+/* Animation delays for stats cards */
+.stat-card:nth-child(1) .stat-number { animation-delay: 0.2s; }
+.stat-card:nth-child(2) .stat-number { animation-delay: 0.4s; }
+.stat-card:nth-child(3) .stat-number { animation-delay: 0.6s; }
+.stat-card:nth-child(4) .stat-number { animation-delay: 0.8s; }
 
 /* Hexagonal Grid Styles */
 .company-history {

@@ -269,4 +269,53 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
+
+    // Age Verification
+    const ageVerificationPopup = document.getElementById('ageVerificationPopup');
+    const confirmAgeBtn = document.getElementById('confirmAge');
+    const rejectAgeBtn = document.getElementById('rejectAge');
+
+    // Check if age has been verified
+    const isAgeVerified = () => {
+        return localStorage.getItem('ageVerified') === 'true';
+    };
+
+    // Show age verification popup
+    const showAgeVerification = () => {
+        ageVerificationPopup.style.display = 'flex';
+        // Trigger reflow
+        ageVerificationPopup.offsetHeight;
+        ageVerificationPopup.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
+
+    // Hide age verification popup
+    const hideAgeVerification = () => {
+        ageVerificationPopup.classList.remove('active');
+        document.body.style.overflow = '';
+        setTimeout(() => {
+            ageVerificationPopup.style.display = 'none';
+        }, 300);
+    };
+
+    // Handle age confirmation
+    const handleAgeConfirmation = () => {
+        localStorage.setItem('ageVerified', 'true');
+        hideAgeVerification();
+    };
+
+    // Handle age rejection
+    const handleAgeRejection = () => {
+        localStorage.setItem('ageVerified', 'false');
+        window.location.href = 'https://www.google.com';
+    };
+
+    // Add event listeners
+    confirmAgeBtn.addEventListener('click', handleAgeConfirmation);
+    rejectAgeBtn.addEventListener('click', handleAgeRejection);
+
+    // Check age verification on page load
+    if (!isAgeVerified()) {
+        showAgeVerification();
+    }
 }); 
