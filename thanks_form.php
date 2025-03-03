@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = $_POST["message"];
     $consent = isset($_POST["consent"]) ? "Yes" : "No";
 
-    $to = "easysports9@gmail.com";
+    $to = "contact@proleague.com";
     $email_subject = "New Contact Form Submission: $subject";
     
     $body = "Name: $name\n";
