@@ -580,7 +580,7 @@ p {
 }
 
 .submit-btn:hover {
-    background: #ff3333;
+    background:#fff;
 }
 
 /* Footer */
@@ -4196,7 +4196,7 @@ footer {
 }
 
 .btn-primary:hover {
-    background: #ff3333;
+    background:#fff;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(255, 0, 0, 0.2);
 }
